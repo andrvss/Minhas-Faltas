@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Minhas faltas ♥</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&display=swap">
+<style>
+:root{color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#030205;--card:#08050a;--line:#1d1424;--bone:#e6dde8;--muted:#9486a0;--pink:#e98fb8;--wine:#b01e4f;--red:#e0457a;--warn:#d9a441;--serif:"Cormorant Garamond",Georgia,"Times New Roman",serif}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(180deg,#050307 0,#120b19 45%,#3b2d49 100%) fixed,#050307;color:var(--bone);font-family:var(--serif);font-size:18px;line-height:1.35}
+main{max-width:980px;margin:0 auto;padding:18px 16px 40px}
+header{text-align:center;margin-bottom:22px}
+#wave{width:100%;max-width:420px;height:auto;display:block;margin:0 auto}
+h1{font-size:2.1rem;margin:6px 0 0;font-weight:700;letter-spacing:.05em;display:inline-flex;align-items:center;gap:10px}
+h1 svg{width:36px;height:36px;cursor:pointer}
+h2{margin:0 0 10px;font-size:1.5rem}
+h3{margin:14px 0 6px;font-size:1.1rem;color:var(--muted)}
+.sub{color:var(--muted);font-style:italic;margin:2px 0 0;font-size:1rem}
+.orn{color:#6a3a52;letter-spacing:.5em;margin:6px 0 0;font-size:.9rem}
+#note{display:none;max-width:420px;margin:12px auto 0;padding:10px 14px;border:1px solid var(--wine);border-radius:12px;color:var(--pink);font-style:italic}
+#cup{width:44px;height:44px;display:block;margin:10px auto 0;cursor:pointer}
+.steam{fill:none;stroke:#c08a5a;stroke-width:1.6;stroke-linecap:round;opacity:0;animation:steam 3s ease-in-out infinite}
+.s2{animation-delay:1s}.s3{animation-delay:2s}
+@keyframes steam{0%{opacity:0;transform:translateY(4px)}50%{opacity:.8}100%{opacity:0;transform:translateY(-4px)}}
+#coffeemsg{color:#c08a5a;font-style:italic;margin:2px 0 0;font-size:1rem;min-height:1.4em}
+.grid{margin-top:52px;display:grid;gap:56px 14px;grid-template-columns:repeat(auto-fill,minmax(285px,1fr))}
+.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;position:relative}
+.panel{max-width:460px;margin:0 auto}
+.card.last{border-color:var(--wine);box-shadow:0 0 22px #b01e4f44;animation:pulsebox 2.4s ease-in-out infinite}
+.card.dead{border-color:var(--red);box-shadow:0 0 28px #e0457a55;animation:shake .5s 1}
+@keyframes pulsebox{50%{box-shadow:0 0 34px #b01e4f88}}
+@keyframes shake{20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+.catwrap{position:absolute;right:16px;bottom:100%;margin-bottom:-3px;width:124px;height:50px;z-index:2}
+#cat{width:124px;height:auto;overflow:visible;display:block;cursor:pointer;transform-origin:50% 100%}
+#cat.sleep{animation:breathe 3.6s ease-in-out infinite}
+#cat.scared{animation:shiver .25s linear infinite}
+#cat.purr{animation:hop .5s ease-out}
+@keyframes breathe{50%{transform:scale(1.02,1.06)}}
+@keyframes shiver{25%{transform:translateX(-1.5px)}75%{transform:translateX(1.5px)}}
+@keyframes hop{40%{transform:translateY(-8px)}}
+#catmsg{position:absolute;right:130px;bottom:6px;width:125px;text-align:right;color:var(--muted);font-style:italic;font-size:.85rem;line-height:1.2}
+.top{display:flex;gap:8px;align-items:center}
+.name{flex:1;min-width:0;font:inherit;font-weight:700;font-size:1.25rem;color:var(--bone);background:transparent;border:0;border-bottom:1px dotted var(--line);padding:2px 0}
+input,select{font:inherit;font-size:1rem;color:var(--bone);background:#030205;border:1px solid var(--line);border-radius:8px;padding:6px 8px;max-width:100%}
+.name{background:transparent;border:0;border-bottom:1px dotted var(--line);border-radius:0}
+label{display:block;margin:8px 0;color:var(--muted);font-size:.95rem}
+label input{display:block;width:100%;margin-top:3px}
+.err{color:#ff8fb1;min-height:1.3em;margin:6px 0;font-style:italic}
+.hearts{display:flex;gap:9px;margin:14px 0 4px;font-size:1.8rem;line-height:1}
+.hearts span{display:inline-block}
+.hearts .on{color:var(--pink)}
+.hearts .danger{color:var(--wine)}
+.hearts .danger.beat{color:var(--red);animation:beat 1s ease-in-out infinite}
+.hearts .off{color:#4c3a57;animation:pop .4s ease-out}
+@keyframes beat{50%{transform:scale(1.3)}}
+@keyframes pop{30%{transform:scale(1.5) rotate(-10deg)}}
+.big{font-size:1.05rem;color:var(--muted)}
+.big b{color:var(--bone);font-size:1.3rem}
+.msg{margin:6px 0 12px;font-style:italic}
+.warn{margin:6px 0 12px;padding:8px 10px;border:1px solid var(--wine);border-radius:10px;background:#1a0710;color:#f2a5c0;font-size:.98rem}
+.warn.dead{border-color:var(--red);color:#ffb3cc}
+.btns{display:grid;gap:8px}
+button{font:inherit;font-size:.98rem;border:1px solid #3a2c45;background:transparent;color:var(--bone);border-radius:10px;padding:9px 8px;cursor:pointer}
+button:active{transform:scale(.98)}
+button:disabled{opacity:.5}
+button.main{background:var(--wine);border-color:var(--wine)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.date{display:flex;align-items:center;gap:8px;margin-top:10px;color:var(--muted);font-size:.95rem}
+details{margin-top:12px;font-size:.98rem}
+summary{cursor:pointer;color:var(--muted)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--line)}
+.row button{padding:1px 8px;font-size:.85rem}
+.rows .row{border:0}
+.rows input{flex:1;min-width:0}
+.hist{margin:0 auto 14px;max-width:560px}
+.load{text-align:center;color:var(--muted);font-style:italic}
+footer{margin-top:30px;text-align:center;color:var(--muted);font-style:italic;font-size:.95rem}
+footer .fb{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:10px}
+footer button{font-size:.85rem;padding:5px 10px}
+#modal{position:fixed;inset:0;background:#000a;display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+#modal[hidden]{display:none}
+.box{background:#0d0812;border:1px solid var(--wine);border-radius:16px;padding:20px;max-width:340px;text-align:center;box-shadow:0 0 30px #b01e4f55}
+.box h2{margin:4px 0 8px;font-size:1.35rem}
+.box p{margin:0 0 16px;color:var(--muted)}
+.mi{font-size:2rem;color:var(--wine)}
+</style>
+</head>
+<body>
+<main>
+<header>
+<svg id="wave" viewBox="0 0 400 80" aria-hidden="true"></svg>
+<h1><svg id="skull" viewBox="0 0 40 40" role="button" aria-label="Um bilhete"><path d="M20 8c-8 0-13 5-13 12 0 4 2 7 5 9v5h16v-5c3-2 5-5 5-9 0-7-5-12-13-12z" fill="#e6dde8"/><circle cx="14.5" cy="20" r="3" fill="#030205"/><circle cx="25.5" cy="20" r="3" fill="#030205"/><path d="M20 24l-2 3h4z" fill="#030205"/><path d="M26 7l6-3v9z M26 7l-4-4 0 8z" fill="#e98fb8"/><circle cx="26" cy="7" r="2" fill="#b01e4f"/></svg>Minhas faltas</h1>
+<p class="sub">Psicologia · Santa Marcelina · 4 faltas por matéria</p>
+<p class="orn">✦ ♥ ✦</p>
+<p class="sub">o último coração é a zona de perigo</p>
+<svg id="cup" viewBox="0 0 48 48" role="button" aria-label="Pausa para o café"><path class="steam" d="M16 14q-3-4 0-7t0-5"/><path class="steam s2" d="M24 14q-3-4 0-7t0-5"/><path class="steam s3" d="M32 14q-3-4 0-7t0-5"/><path d="M9 18h30v10a11 11 0 0 1-11 11h-8a11 11 0 0 1-11-11z" fill="#0b0710" stroke="#c08a5a" stroke-width="2"/><path d="M39 21h3a5 5 0 0 1 0 10h-4" fill="none" stroke="#c08a5a" stroke-width="2"/><path d="M6 43h36" stroke="#c08a5a" stroke-width="2" stroke-linecap="round"/></svg>
+<p id="coffeemsg">toque na xícara ☕</p>
+<div id="note"></div>
+</header>
+<div id="app"></div>
+<footer id="foot"></footer>
+</main>
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="mt" hidden><div class="box"><div class="mi">☠</div><h2 id="mt"></h2><p id="mp"></p><div class="two"><button id="mno" class="main">Não, voltar</button><button id="myes">Sim</button></div></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+var SUPABASE_URL="https://hqyabayggdajrbdpbpnn.supabase.co";
+var SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxeWFiYXlnZ2RhanJiZHBicG5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ0NDQ2NTMsImV4cCI6MjExMDAyMDY1M30.AGB7RA5OVlUCAXYwEy2J9h5zCxKklitfgRFeoHSWLbo";
+var db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+var NOTE="Se for faltar, que seja por um bom motivo. Se for ir, que seja pensando em mim. Te amo ♥";
+var DAYLIM=4,HEARTS=5,AULALIM=15;
+var WD=["Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];
+var CATMSG={sleep:"zzz… sonhando com café",alert:"miau? última vida… sobe um café",scared:"MIAAAU!! passou do limite!",purr:"purrrr ♥"};
+var CAFE=["Que a gente tome muito café em cafeteria, juntos.","Almoçar no Sesc com você é um dos meus programas preferidos.","Cinema com você é melhor que o filme.","Adoro conversar sobre política com você: suas opiniões me fazem pensar.","Dormir com você, no calor ou no frio, é o meu lugar favorito.","Avisa quando chegar bem em casa, tá? Eu fico mais tranquilo.","Que hoje o trabalho te canse um pouquinho menos.","Toma seu café com calma. Você não precisa carregar o mundo hoje.","Você apresenta e fala muito bem. Confia nisso.","Suas opiniões são fortes e importantes. Fala, que a gente precisa ouvir.","Você é divertida demais: até o gato ri."];
+var app=document.getElementById("app"),foot=document.getElementById("foot");
+var cur=null,purring=false,busy=false,cafeIdx=-1;
+
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e;}
+function today(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function fmt(s){var p=String(s).split("-");return p[2]+"/"+p[1];}
+function fmtFull(s){var p=String(s).split("-");return p[2]+"/"+p[1]+"/"+p[0];}
+function stats(sub){
+  var by={};(sub.absences||[]).forEach(function(x){by[x.date]=Math.min(4,(by[x.date]||0)+x.classes);});
+  var d=Object.keys(by).length,a=0;for(var k in by)a+=by[k];return{days:d,aulas:a};
+}
+function lbl(x){return x.classes===4?"dia todo":(x.half===1?"antes do intervalo":x.half===2?"depois do intervalo":"meio dia");}
+function clear(){app.innerHTML="";foot.innerHTML="";}
+function fbtn(box,text,fn){var b=el("button","",text);b.onclick=fn;box.appendChild(b);}
+function setFoot(buttons){
+  foot.innerHTML="";var box=el("div","fb");
+  buttons.forEach(function(b){fbtn(box,b[0],b[1]);});
+  foot.appendChild(box);foot.appendChild(document.createTextNode("feito à mão, só pra você ♥"));
+}
+function fail(e){
+  console.error(e);clear();
+  var p=el("div","panel");p.appendChild(el("h2","","Não consegui falar com o banco"));
+  p.appendChild(el("p","sub","Seus dados continuam salvos. Confira a internet e tente de novo."));
+  var b=el("button","main","Tentar de novo");b.onclick=start;p.appendChild(b);app.appendChild(p);
+}
+function ask(title,text,yes,fn){
+  var m=document.getElementById("modal");
+  document.getElementById("mt").textContent=title;document.getElementById("mp").textContent=text;
+  document.getElementById("myes").textContent=yes;
+  m.hidden=false;document.getElementById("mno").focus();
+  document.getElementById("myes").onclick=function(){m.hidden=true;fn();};
+}
+function closeModal(){document.getElementById("modal").hidden=true;}
+document.getElementById("mno").onclick=closeModal;
+document.getElementById("modal").onclick=function(e){if(e.target===this)closeModal();};
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal();});
+
+function drawWave(){
+  var svg=document.getElementById("wave"),seed=7,out="";
+  function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647;}
+  for(var i=0;i<12;i++){
+    var y=16+i*5,pts="M0 "+y;
+    for(var x=0;x<=400;x+=5){var c=Math.exp(-Math.pow((x-200)/55,2)),h=c*(6+rnd()*22)*(rnd()>.55?1:.25);pts+=" L"+x+" "+(y-h).toFixed(1);}
+    out+='<path d="'+pts+' L400 '+y+' L400 90 L0 90 Z" fill="#050307" stroke="#e6dde8" stroke-width="1" stroke-linejoin="round"/>';
+  }
+  svg.innerHTML=out;
+}
+function drawCat(mode){
+  var cat=document.getElementById("cat");if(!cat)return;
+  var ink='fill="#0b0710" stroke="#3a2a45" stroke-width="2" stroke-linejoin="round"',eyes;
+  if(mode==="sleep"||mode==="purr")eyes='<path d="M18 34q5 4 10 0M32 34q5 4 10 0" fill="none" stroke="#e98fb8" stroke-width="2" stroke-linecap="round"/>';
+  else if(mode==="alert")eyes='<ellipse cx="23" cy="34" rx="4.5" ry="5" fill="#f1c85a"/><ellipse cx="37" cy="34" rx="4.5" ry="5" fill="#f1c85a"/><ellipse cx="23" cy="34" rx="1.3" ry="4.3" fill="#030205"/><ellipse cx="37" cy="34" rx="1.3" ry="4.3" fill="#030205"/>';
+  else eyes='<circle cx="23" cy="34" r="5.5" fill="#f1c85a"/><circle cx="37" cy="34" r="5.5" fill="#f1c85a"/><circle cx="23" cy="34" r="1.6" fill="#030205"/><circle cx="37" cy="34" r="1.6" fill="#030205"/>';
+  var extra=mode==="sleep"?'<text x="56" y="14" font-size="11" fill="#9486a0" font-style="italic">z z</text>':mode==="purr"?'<text x="48" y="14" font-size="12" fill="#e98fb8">♥</text>':"";
+  var tail='<path d="M122 42q10 1 8 13q-1 7-9 9" fill="none" stroke="#3a2a45" stroke-width="7" stroke-linecap="round"/><path d="M122 42q10 1 8 13q-1 7-9 9" fill="none" stroke="#0b0710" stroke-width="3.5" stroke-linecap="round"/>';
+  cat.innerHTML=tail+'<path d="M20 48C18 28 40 20 70 20c32 0 50 10 50 28z" '+ink+'/><path d="M15 27L16 10l12 9zM45 27L44 10l-12 9z" '+ink+'/><ellipse cx="30" cy="34" rx="17" ry="13" '+ink+'/><path d="M18 22l.5-8 6 4zM42 22l-.5-8-6 4z" fill="#e98fb8" opacity=".5"/>'+eyes+'<path d="M28 39l2 2 2-2z" fill="#e98fb8"/><path d="M14 40l-9-2M14 43l-9 2M46 40l9-2M46 43l9 2" stroke="#5a4766" stroke-width="1.2" stroke-linecap="round"/><ellipse cx="24" cy="47" rx="7" ry="3.5" '+ink+'/><ellipse cx="40" cy="47" rx="7" ry="3.5" '+ink+'/>'+extra;
+  cat.setAttribute("class",mode);
+}
+function mood(){
+  var w=0;cur.subs.forEach(function(s){var t=stats(s);var l=(t.days>DAYLIM||t.aulas>AULALIM)?2:(t.days>=DAYLIM||t.aulas>=AULALIM)?1:0;if(l>w)w=l;});
+  return["sleep","alert","scared"][w];
+}
+function setMood(){var m=mood();drawCat(m);document.getElementById("catmsg").textContent=CATMSG[m];}
+function purr(){
+  if(purring)return;purring=true;drawCat("purr");document.getElementById("catmsg").textContent=CATMSG.purr;
+  setTimeout(function(){purring=false;if(document.getElementById("cat"))setMood();},1800);
+}
+
+/* ---------- dados ---------- */
+async function loadActive(){
+  var r=await db.from("semesters").select("*").eq("status","active").limit(1);
+  if(r.error)throw r.error;
+  if(!r.data.length)return null;
+  var s=r.data[0];
+  var q=await db.from("subjects").select("*, absences(*)").eq("semester_id",s.id).order("position");
+  if(q.error)throw q.error;
+  q.data.forEach(function(x){x.absences.sort(function(a,b){return a.created_at<b.created_at?-1:1;});});
+  return{sem:s,subs:q.data};
+}
+async function act(fn){
+  if(busy)return;busy=true;
+  try{await fn();cur=await loadActive();showMain();}catch(e){fail(e);}finally{busy=false;}
+}
+
+/* ---------- telas ---------- */
+async function start(){
+  clear();app.appendChild(el("p","load","carregando…"));
+  try{
+    var s=(await db.auth.getSession()).data.session;
+    if(!s){showLogin();return;}
+    cur=await loadActive();
+    if(!cur)showForm();else showMain();
+  }catch(e){fail(e);}
+}
+
+function showLogin(){
+  clear();var p=el("div","panel");
+  p.innerHTML='<h2>Entrar</h2><form><label>E-mail<input id="em" type="email" autocomplete="username" required></label><label>Senha<input id="pw" type="password" autocomplete="current-password" required></label><div class="err" id="err"></div><button class="main" style="width:100%">Entrar</button></form>';
+  p.querySelector("form").onsubmit=async function(e){
+    e.preventDefault();var err=document.getElementById("err");err.textContent="";
+    var r=await db.auth.signInWithPassword({email:document.getElementById("em").value.trim(),password:document.getElementById("pw").value});
+    if(r.error){err.textContent="E-mail ou senha incorretos.";return;}
+    start();
+  };
+  app.appendChild(p);
+}
+
+function showForm(){
+  clear();var p=el("div","panel"),d=new Date();
+  var sug=d.getFullYear()+"."+(d.getMonth()<6?1:2);
+  p.innerHTML='<h2>Novo semestre</h2><label>Nome do semestre<input id="sn" value="'+sug+'"></label><div class="two"><label>Início<input id="sd" type="date"></label><label>Fim<input id="ed" type="date"></label></div><h3>Matérias</h3><div class="rows" id="rows"></div><button id="addrow">+ matéria</button><div class="err" id="err"></div><button class="main" id="save" style="width:100%">Começar semestre</button>';
+  app.appendChild(p);
+  var rows=document.getElementById("rows");
+  function addRow(i){
+    var r=el("div","row");var n=el("input");n.placeholder="Nome da matéria";
+    var s=el("select");WD.forEach(function(w,k){var o=el("option","",w);o.value=k;if(k===i)o.selected=true;s.appendChild(o);});
+    r.appendChild(n);r.appendChild(s);rows.appendChild(r);
+  }
+  for(var i=0;i<5;i++)addRow(i);
+  document.getElementById("addrow").onclick=function(){addRow(0);};
+  document.getElementById("save").onclick=async function(){
+    var err=document.getElementById("err");err.textContent="";
+    var name=document.getElementById("sn").value.trim();
+    var subs=[];Array.prototype.forEach.call(rows.children,function(r){var n=r.querySelector("input").value.trim();if(n)subs.push({name:n,weekday:+r.querySelector("select").value});});
+    if(!name){err.textContent="Dê um nome ao semestre.";return;}
+    if(!subs.length){err.textContent="Cadastre pelo menos uma matéria.";return;}
+    this.disabled=true;
+    try{
+      var s=await db.from("semesters").insert({name:name,starts_on:document.getElementById("sd").value||null,ends_on:document.getElementById("ed").value||null}).select().single();
+      if(s.error)throw s.error;
+      var q=await db.from("subjects").insert(subs.map(function(x,i){return{semester_id:s.data.id,name:x.name,weekday:x.weekday,position:i};}));
+      if(q.error){await db.from("semesters").delete().eq("id",s.data.id);throw q.error;}
+      start();
+    }catch(e){console.error(e);err.textContent="Não consegui salvar. Tente de novo.";this.disabled=false;}
+  };
+  setFoot([["Sair",logout]]);
+}
+
+function showMain(){
+  clear();
+  var head=el("p","sub","Semestre "+cur.sem.name);head.style.textAlign="center";app.appendChild(head);
+  var g=el("div","grid");app.appendChild(g);
+  cur.subs.forEach(function(sub){
+    var st=stats(sub),dead=st.days>DAYLIM||st.aulas>AULALIM,last=!dead&&(st.days>=DAYLIM||st.aulas>=AULALIM);
+    var c=el("div","card"+(dead?" dead":last?" last":""));
+    var top=el("div","top");
+    var nm=el("input","name");nm.value=sub.name;nm.setAttribute("aria-label","Nome da matéria");
+    nm.onchange=function(){var v=nm.value.trim()||sub.name;act(async function(){var r=await db.from("subjects").update({name:v}).eq("id",sub.id);if(r.error)throw r.error;});};
+    var sel=el("select");WD.forEach(function(w,k){var o=el("option","",w);o.value=k;if(k===sub.weekday)o.selected=true;sel.appendChild(o);});
+    sel.onchange=function(){act(async function(){var r=await db.from("subjects").update({weekday:+sel.value}).eq("id",sub.id);if(r.error)throw r.error;});};
+    top.appendChild(nm);top.appendChild(sel);c.appendChild(top);
+
+    var h=el("div","hearts");
+    for(var i=0;i<HEARTS;i++){var used=i<st.days||(st.aulas>AULALIM&&i<DAYLIM);h.appendChild(el("span",used?"off":(i===HEARTS-1?"danger"+(last?" beat":""):"on"),used?"☠":"♥"));}
+    c.appendChild(h);
+    var big=el("div","big");big.innerHTML="faltou <b></b> de "+DAYLIM+" dias";big.querySelector("b").textContent=st.days;c.appendChild(big);
+
+    var left=Math.max(0,DAYLIM-st.days),aLeft=AULALIM-st.aulas;
+    if(dead)c.appendChild(el("div","warn dead","☠ Passou do limite de faltas. Risco real de reprovação: fala com a coordenação."));
+    else if(last)c.appendChild(el("div","warn","⚠ Última vida! Se acabar, estamos em perigo de reprovar por falta nesta matéria. Hora de um café e de não faltar mais ☕"));
+    else{
+      var m=el("div","msg","Ainda pode faltar "+left+(left===1?" dia":" dias")+"."+(aLeft<4?" Atenção: só meio dia, restam "+aLeft+" aulas.":""));
+      m.style.color=left<=1?"var(--warn)":"var(--pink)";c.appendChild(m);
+    }
+
+    var dt=el("div","date");dt.appendChild(document.createTextNode("Data: "));
+    var inp=el("input");inp.type="date";inp.value=today();dt.appendChild(inp);
+    function add(n,half){act(async function(){var r=await db.from("absences").insert({subject_id:sub.id,date:inp.value||today(),classes:n,half:half});if(r.error)throw r.error;});}
+    var b=el("div","btns");
+    var all=el("button","main","Faltei o dia todo");all.onclick=function(){add(4,0);};
+    var two=el("div","two");
+    var p1=el("button","","Só antes do intervalo");p1.onclick=function(){add(2,1);};
+    var p2=el("button","","Só depois do intervalo");p2.onclick=function(){add(2,2);};
+    two.appendChild(p1);two.appendChild(p2);
+    var un=el("button","","Desfazer última");
+    un.onclick=function(){var l=sub.absences[sub.absences.length-1];if(!l)return;act(async function(){var r=await db.from("absences").delete().eq("id",l.id);if(r.error)throw r.error;});};
+    b.appendChild(all);b.appendChild(two);b.appendChild(un);c.appendChild(b);c.appendChild(dt);
+
+    var det=el("details");det.appendChild(el("summary","","Histórico ("+st.days+")"));
+    sub.absences.slice().sort(function(a,b){return a.date<b.date?1:-1;}).forEach(function(x){
+      var r=el("div","row");r.appendChild(el("span","",fmt(x.date)+" · "+lbl(x)));
+      var rm=el("button","","remover");rm.setAttribute("aria-label","Remover falta");
+      rm.onclick=function(){act(async function(){var q=await db.from("absences").delete().eq("id",x.id);if(q.error)throw q.error;});};
+      r.appendChild(rm);det.appendChild(r);
+    });
+    c.appendChild(det);g.appendChild(c);
+  });
+  var idx=Math.min(2,g.children.length-1);
+  if(idx>=0){
+    var cw=el("div","catwrap");
+    cw.innerHTML='<div id="catmsg"></div><svg id="cat" viewBox="0 0 124 50" role="button" aria-label="Fazer carinho no gato"></svg>';
+    g.children[idx].appendChild(cw);document.getElementById("cat").onclick=purr;
+    if(purring){drawCat("purr");document.getElementById("catmsg").textContent=CATMSG.purr;}else setMood();
+  }
+  setFoot([["Semestres anteriores",showHistory],["Exportar backup",exportBackup],["Concluir semestre",confirmClose],["Sair",logout]]);
+}
+
+function confirmClose(){
+  ask("Certeza que quer encerrar o semestre?","O semestre vai para o arquivo, com todas as faltas guardadas, e um novo semestre começa vazio.","Sim, encerrar",function(){
+    act2(async function(){
+      var bad=cur.subs.filter(function(s){var t=stats(s);return t.days>DAYLIM||t.aulas>AULALIM;});
+      var r=await db.from("semesters").update({status:"archived",passed:bad.length===0,closed_at:new Date().toISOString()}).eq("id",cur.sem.id);
+      if(r.error)throw r.error;
+      var name=cur.sem.name;cur=null;showDone(name,bad);
+    });
+  });
+}
+async function act2(fn){if(busy)return;busy=true;try{await fn();}catch(e){fail(e);}finally{busy=false;}}
+
+function showDone(name,bad){
+  clear();var p=el("div","panel");p.style.textAlign="center";
+  if(!bad.length){
+    p.appendChild(el("h2","","Você passou de semestre! 🎓"));
+    p.appendChild(el("p","sub","O semestre "+name+" terminou sem nenhuma matéria acima do limite de faltas. Parabéns, de verdade ♥"));
+    p.appendChild(el("p","","☕ Merece um café, um gato no colo e um bom descanso."));
+  }else{
+    p.appendChild(el("h2","","Semestre "+name+" encerrado"));
+    p.appendChild(el("p","sub",(bad.length===1?"Uma matéria passou":bad.length+" matérias passaram")+" do limite de faltas: "+bad.map(function(s){return s.name;}).join(", ")+". Vale conversar com a coordenação sobre as opções. O histórico fica guardado."));
+  }
+  var two=el("div","two");
+  fbtn(two,"Novo semestre",showForm);two.firstChild.className="main";
+  fbtn(two,"Semestres anteriores",showHistory);
+  p.appendChild(two);app.appendChild(p);
+}
+
+async function showHistory(){
+  clear();app.appendChild(el("p","load","carregando…"));
+  try{
+    var r=await db.from("semesters").select("*, subjects(*, absences(*))").eq("status","archived").order("created_at",{ascending:false});
+    if(r.error)throw r.error;
+    clear();var back=el("button","","← Voltar");back.onclick=start;back.style.marginBottom="14px";app.appendChild(back);
+    if(!r.data.length)app.appendChild(el("p","load","Ainda não há semestres anteriores."));
+    r.data.forEach(function(s){
+      var p=el("div","panel hist");
+      p.appendChild(el("h2","","Semestre "+s.name+(s.passed===true?" · passou 🎓":s.passed===false?" · acima do limite":"")));
+      if(s.starts_on||s.ends_on)p.appendChild(el("p","sub",(s.starts_on?fmtFull(s.starts_on):"?")+" a "+(s.ends_on?fmtFull(s.ends_on):"?")));
+      s.subjects.sort(function(a,b){return a.position-b.position;}).forEach(function(sub){
+        var st=stats(sub),d=el("details");
+        d.appendChild(el("summary","",sub.name+" · "+WD[sub.weekday]+" · "+st.days+" dia(s), "+st.aulas+" aulas"));
+        sub.absences.slice().sort(function(a,b){return a.date<b.date?1:-1;}).forEach(function(x){d.appendChild(el("div","row",fmt(x.date)+" · "+lbl(x)));});
+        if(!sub.absences.length)d.appendChild(el("div","row","Nenhuma falta ♥"));
+        p.appendChild(d);
+      });
+      app.appendChild(p);
+    });
+    setFoot([["Sair",logout]]);
+  }catch(e){fail(e);}
+}
+
+async function exportBackup(){
+  try{
+    var a=await Promise.all([db.from("semesters").select("*"),db.from("subjects").select("*"),db.from("absences").select("*")]);
+    a.forEach(function(r){if(r.error)throw r.error;});
+    var data={exported_at:new Date().toISOString(),semesters:a[0].data,subjects:a[1].data,absences:a[2].data};
+    var blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+    var l=document.createElement("a");l.href=URL.createObjectURL(blob);l.download="faltas-backup-"+today()+".json";
+    document.body.appendChild(l);l.click();l.remove();
+  }catch(e){fail(e);}
+}
+async function logout(){await db.auth.signOut();cur=null;showLogin();setFoot([]);}
+
+/* ---------- eventos fixos ---------- */
+document.getElementById("skull").onclick=function(){var n=document.getElementById("note");n.textContent=NOTE;n.style.display=n.style.display==="block"?"none":"block";};
+document.getElementById("cup").onclick=function(){
+  cafeIdx=(cafeIdx+1+Math.floor(Math.random()*(CAFE.length-1)))%CAFE.length;
+  document.getElementById("coffeemsg").textContent=CAFE[cafeIdx];
+};
+drawWave();start();
+</script>
+</body>
+</html>
